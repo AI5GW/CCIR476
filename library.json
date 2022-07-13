@@ -1,0 +1,22 @@
+{
+    "name": "CCIR476",
+    "keywords": "CCIR476, SITOR, AMTOR, NAVTEXT",
+    "description": "Encode and Decode CCIR476 symbols on your Arduino",
+    "repository":
+    {
+      "type": "git",
+      "url": "https://github.com/AI5GW/CCIR476"
+    },
+    "authors":
+    [
+      {
+        "name": "Sebastian Westerhold",
+        "email": "sebastian@baltic-lab.com",
+        "url": "https://baltic-lab.com",
+        "maintainer": true
+      }
+    ],
+    "version": "1.1.0",
+    "frameworks": "arduino",
+    "platforms": "*"
+  }
