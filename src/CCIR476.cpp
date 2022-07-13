@@ -2,7 +2,9 @@
  * CCIR476.cpp - CCIR476 encoder library for Arduino
  *
  * Copyright (C) 2022 Sebastian Westerhold (AI5GW) <sebastian@baltic-lab.com>
- * https://baltic-lab.com
+ * Web (EN): https://baltic-lab.com
+ * Web (DE): https://baltic-labor.de/
+ * YouTube (EN): https://www.youtube.com/c/BalticLab
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,77 +38,79 @@
 
 CCIR476::CCIR476(void)
 {
-
+	bool CCIR_MODE = 1; 
+	bool OLD_MODE = 0;
 }
 
 uint8_t CCIR476::Encode(char c)
 {
 	switch (c)
-      {       
-        // 'LTRS' 0x5A
-        case 'A': { return 0x47; }  // 65 
-        case 'B': { return 0x72; }
-        case 'C': { return 0x1D; }
-        case 'D': { return 0x53; }
-        case 'E': { return 0x56; }
-        case 'F': { return 0x1B; }
-        case 'G': { return 0x35; }
-        case 'H': { return 0x69; }
-        case 'I': { return 0x4D; }
-        case 'J': { return 0x17; }
-        case 'K': { return 0x1E; }
-        case 'L': { return 0x65; }
-        case 'M': { return 0x39; }
-        case 'N': { return 0x59; }
-        case 'O': { return 0x71; }
-        case 'P': { return 0x2D; }
-        case 'Q': { return 0x2E; }
-        case 'R': { return 0x55; }
-        case 'S': { return 0x4B; }
-        case 'T': { return 0x74; }
-        case 'U': { return 0x4E; }
-        case 'V': { return 0x3C; }
-        case 'W': { return 0x27; }
-        case 'X': { return 0x3A; }
-        case 'Y': { return 0x2B; }
-        case 'Z': { return 0x63; }  // 90
+      	{       
+        	// Letter Mode Cases
+        	case 'A': { bool CCIR_MODE = 1; return 0x47; }  
+        	case 'B': { bool CCIR_MODE = 1; return 0x72; }
+        	case 'C': { bool CCIR_MODE = 1; return 0x1D; }
+        	case 'D': { bool CCIR_MODE = 1; return 0x53; }
+        	case 'E': { bool CCIR_MODE = 1; return 0x56; }
+        	case 'F': { bool CCIR_MODE = 1; return 0x1B; }
+        	case 'G': { bool CCIR_MODE = 1; return 0x35; }
+        	case 'H': { bool CCIR_MODE = 1; return 0x69; }
+        	case 'I': { bool CCIR_MODE = 1; return 0x4D; }
+        	case 'J': { bool CCIR_MODE = 1; return 0x17; }
+        	case 'K': { bool CCIR_MODE = 1; return 0x1E; }
+        	case 'L': { bool CCIR_MODE = 1; return 0x65; }
+        	case 'M': { bool CCIR_MODE = 1; return 0x39; }
+        	case 'N': { bool CCIR_MODE = 1; return 0x59; }
+        	case 'O': { bool CCIR_MODE = 1; return 0x71; }
+        	case 'P': { bool CCIR_MODE = 1; return 0x2D; }
+        	case 'Q': { bool CCIR_MODE = 1; return 0x2E; }
+        	case 'R': { bool CCIR_MODE = 1; return 0x55; }
+        	case 'S': { bool CCIR_MODE = 1; return 0x4B; }
+        	case 'T': { bool CCIR_MODE = 1; return 0x74; }
+        	case 'U': { bool CCIR_MODE = 1; return 0x4E; }
+        	case 'V': { bool CCIR_MODE = 1; return 0x3C; }
+        	case 'W': { bool CCIR_MODE = 1; return 0x27; }
+        	case 'X': { bool CCIR_MODE = 1; return 0x3A; }
+        	case 'Y': { bool CCIR_MODE = 1; return 0x2B; }
+        	case 'Z': { bool CCIR_MODE = 1; return 0x63; }  // 90
 
-        case 13: { return 0x78; }   // CR
-        case 10: { return 0x6C; }   // LF
-        case 32: { return 0x5C; }   // SP
+		// No mode change needed for CR, LF and SP
+        	case 13: { return 0x78; }   // CR
+        	case 10: { return 0x6C; }   // LF
+        	case 32: { return 0x5C; }   // SP
 
-        // 'FIGS' 0x36
-        case '0': { return 0x2D; }
-        case '1': { return 0x2E; }
-        case '2': { return 0x27; }
-        case '3': { return 0x56; }
-        case '4': { return 0x55; }
-        case '5': { return 0x74; }
-        case '6': { return 0x2B; }
-        case '7': { return 0x4E; }
-        case '8': { return 0x4D; }
-        case '9': { return 0x71; }                 
-        case '\'': { return 0x17; }      
-        case '!': { return 0x1B; }
-        case ':': { return 0x1D; }
-        case '(': { return 0x1E; }
-        case '&': { return 0x35; }
-        case '.': { return 0x39; }
-        case '/': { return 0x3A; }
-        case '=': { return 0x3C; }
-        case '-': { return 0x47; }
-        case '$': { return 0x53; }
-        case ',': { return 0x59; }
-        case '+': { return 0x63; }
-        case ')': { return 0x65; }
-        case '#': { return 0x69; }
-        case '?': { return 0x72; }
+        	// Figures Mode Cases
+        	case '0': { bool CCIR_MODE = 0; return 0x2D; }
+        	case '1': { bool CCIR_MODE = 0; return 0x2E; }
+        	case '2': { bool CCIR_MODE = 0; return 0x27; }
+        	case '3': { bool CCIR_MODE = 0; return 0x56; }
+        	case '4': { bool CCIR_MODE = 0; return 0x55; }
+        	case '5': { bool CCIR_MODE = 0; return 0x74; }
+        	case '6': { bool CCIR_MODE = 0; return 0x2B; }
+        	case '7': { bool CCIR_MODE = 0; return 0x4E; }
+        	case '8': { bool CCIR_MODE = 0; return 0x4D; }
+        	case '9': { bool CCIR_MODE = 0; return 0x71; }                 
+        	case '\'': { bool CCIR_MODE = 0; return 0x17; }      
+        	case '!': { bool CCIR_MODE = 0; return 0x1B; }
+        	case ':': { bool CCIR_MODE = 0; return 0x1D; }
+        	case '(': { bool CCIR_MODE = 0; return 0x1E; }
+        	case '&': { bool CCIR_MODE = 0; return 0x35; }
+        	case '.': { bool CCIR_MODE = 0; return 0x39; }
+        	case '/': { bool CCIR_MODE = 0; return 0x3A; }
+      		case '=': { bool CCIR_MODE = 0; return 0x3C; }
+        	case '-': { bool CCIR_MODE = 0; return 0x47; }
+        	case '$': { bool CCIR_MODE = 0; return 0x53; }
+        	case ',': { bool CCIR_MODE = 0; return 0x59; }
+        	case '+': { bool CCIR_MODE = 0; return 0x63; }
+        	case ')': { bool CCIR_MODE = 0; return 0x65; }
+        	case '#': { bool CCIR_MODE = 0; return 0x69; }
+        	case '?': { bool CCIR_MODE = 0; return 0x72; }
 
         default: { return 0x00; }
       }    
 }
 
-char CCIR476::Decode(uint8_t CCIR, bool LTTR)
+char CCIR476::Decode(uint8_t CCIR, bool Mode)
 {
 
       if (CCIR == 0x78) { return (char)13; }   // CR
@@ -115,10 +119,10 @@ char CCIR476::Decode(uint8_t CCIR, bool LTTR)
       if (CCIR == 0x0F) { return (char)0; }   // ALPHA
       if (CCIR == 0x33) { return (char)0; }    // BETA
       if (CCIR == 0x66) { return (char)0; }     // REP
-      if (CCIR == 0x5A) { return (char)0; }    // Mode = Letters
-      if (CCIR == 0x36) { return (char)0; }     // Mode = Figures
+      if (CCIR == 0x5A) { CCIR_MODE=1; return (char)0; }    // Autoset Mode = Letters
+      if (CCIR == 0x36) { CCIR_MODE=0; return (char)0; }     // Autoset Mode = Figures
       
-      if (LTTR)
+      if (Mode)
       {
         switch (CCIR)
         {                      
@@ -185,6 +189,10 @@ char CCIR476::Decode(uint8_t CCIR, bool LTTR)
       }
 }
 
+char CCIR476::Decode(uint8_t CCIR)
+{
+	return Decode(CCIR, CCIR_MODE);
+}
 
 bool CCIR476::isLetter(char c)
 {
@@ -203,5 +211,32 @@ bool CCIR476::isLetter(char c)
       else
 	{
 	return false;
+	}
+}
+
+bool CCIR476::getMode(void)
+{
+	return CCIR_MODE;
+}
+
+bool CCIR476::setMode(bool NewMode)
+{
+
+	CCIR_MODE = NewMode;
+	return 1;
+}
+
+
+bool CCIR476::ModeChanged(void)
+{
+	if (CCIR_MODE != OLD_MODE)
+	{
+
+		OLD_MODE = CCIR_MODE;
+		return 1;
+	}
+	else
+	{
+		return 0;
 	}
 }
