@@ -12,7 +12,7 @@ Hardware Requirements
 -------------------------------
 This library has been written for the Arduino platform and has been successfully tested on the Arduino Uno, Arduino Nano and Arduino Mega 2560 Rev 3.
 
-Available Functions
+Available Functions and Constants
 -------
 
 here is a simple example named **CCIR476Example.ino** that is placed in your examples menu under the CCIR476 Arduino folder. 
@@ -22,24 +22,91 @@ First of all, the **CCIR476.h** header file need to be included and the CCIR476 
     #include <CCIR476.h>
     CCIR476 CCIR476;
     
+After instantiating the CCIR476 class, important SITOR-A / SITOR-B control symbols are available through the following constant names:
+    
+    CCIR_LETTERS    0x5A    // Letters mode control Symbol
+    CCIR_FIGURES    0x36    // Figures mode control Symbol
+    CCIR_ALPHA      0x0F    // Idle signal 'Alpha' / Phasing signal 1
+    CCIR_BETA       0x33    // Idle signal 'Alpha' / Phasing signal 1
+    CCIR_REP        0x66    // Signal repetition (RQ) / Phasing signal 2
+    
  After instantiating the CCIR476 class, there are 3 functions available:
  
- - int CCIR476.Encode(char)
- - bool CCIR476.isLetter(char)
- - char CCIR476.Decode(int, bool mode)
+ - bool getMode();
+ - setMode(bool);
+ - bool ModeChanged(void);
+ - bool isLetter(char)
+ - int Encode(char)
+ - char Decode(int, bool mode)
+ - char Decode(int)
+ 
+CCIR476.bool getMode() returns boolean '1' for letter mode, boolean '0' for figures mode. 
+ 
+    CCIR476.bool getMode();
+    
+CCIR476.bool setMode() sets the mode of the CCIR476 class either to letters (parameter: boolean 1) or figures (parameter: boolean 0)
+
+    CCIR476.setMode(bool);
+    
+CCIR476.ModeChanged() will check if the mode (letters / figures) has changed from the last time this function was called. This is important to determine whether or not a letters / figures control symbol needs to be transmitted before sending the next symbol. 
+    
+    CCIR476.ModeChanged();
+    
+ CCIR476.isLetter() returns a bolean 'true' if the character supplied through the function's argument is a letter. This function is necessary because CCIR476 allocates the same number twice in the corresponding look-up table; Once for a character and once for a figure. The switching between letters mode and figures mode is done by control symbols. 
+    
+    CCIR476.isLetter('A')
  
  CCIR476.Encode() returns the CCIR476 encoded number corresponding to the character supplied in the function's argument. 
     
     CCIR = CCIR476.Encode('A')
     
- CCIR476.isLetter() returns a bolean 'true' if the character supplied through the function's argument is a letter. This function is necessary because CCIR476 allocates the same number twice in the corresponding look-up table; Once for a character and once for a figure. The switching between letters mode and figures mode is done by control symbols. 
+CCIR476.Decode(int) returns the decoded character. If the CCIR476.Decode() funtion detects control symbols for letters (0x5A) or figures (0x36) mode, the current decoding mode for the entore class will be switched accordingly. This change can be detected by using the CCIR476.ModeChanged() function. 
     
-    CCIR476.isLetter('A')
+    // Decode 0x47 ('A' in Letter mode, '-' in figures mode).
+    CCIR476.Decode(0x47);
     
-CCIR476.Decode() returns the decoded character. The first parameter passed to the function is the encoded symbol. The second parameter is true if the encoded symbol is a letter. If it is false, the figures look-up table will be used.
+    // Will detect figures mode control symbol and switch the decoding mode accordingly
+    CCIR476.Decode(0x36);
+    
+CCIR476.Decode(int, bool mode) returns the decoded character. The first parameter passed to the function is the encoded symbol. The second parameter is true if the encoded symbol is a letter. If it is false, the figures look-up table will be used.
     
     CCIR476.Decode(CCIR476.Encode('Z'), CCIR476.isLetter('Z'))
     
+Links & Contact
+---------------------
+If you have any questions or comments, feel free to contact me through the email address provided in the project files. Additionally, feel free to check out my blogs and YouTube channel for additional information, examples and feedback:
+
+
+[Blog (EN): https://baltic-lab.com](https://baltic-lab.com)
+
+[Blog (DE): https://baltic-labor.de/](https://baltic-labor.de/)
+
+[YouTube (EN): https://www.youtube.com/c/BalticLab](https://www.youtube.com/c/BalticLab)
+
+Arduino Lint Status
+-------------------
+[![arduino-lint Actions Status](https://github.com/AI5GW/CCIR476/workflows/arduino-lint/badge.svg)](https://github.com/AI5GW/CCIR476/actions)
+
+Changelog
+---------
+* v1.1.0
+
+Added control symbols and the following new functions:
+
+    bool getMode();
+    setMode(bool);
+    bool ModeChanged(void);
+    char Decode(int)
+    
+Added keywords.txt
+
+* v1.0.1
+
+    * Minor typos and style issues corrected
+    
+* v1.0.0
+
+    * Initial release
     
 License
 -------
