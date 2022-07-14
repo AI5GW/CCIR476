@@ -38,8 +38,8 @@
 
 CCIR476::CCIR476(void)
 {
-	bool CCIR_MODE = 1; 
-	bool OLD_MODE = 0;
+	CCIR_MODE = 1; 
+	OLD_MODE = 1;
 }
 
 uint8_t CCIR476::Encode(char c)
@@ -47,32 +47,32 @@ uint8_t CCIR476::Encode(char c)
 	switch (c)
       	{       
         	// Letter Mode Cases
-        	case 'A': { bool CCIR_MODE = 1; return 0x47; }  
-        	case 'B': { bool CCIR_MODE = 1; return 0x72; }
-        	case 'C': { bool CCIR_MODE = 1; return 0x1D; }
-        	case 'D': { bool CCIR_MODE = 1; return 0x53; }
-        	case 'E': { bool CCIR_MODE = 1; return 0x56; }
-        	case 'F': { bool CCIR_MODE = 1; return 0x1B; }
-        	case 'G': { bool CCIR_MODE = 1; return 0x35; }
-        	case 'H': { bool CCIR_MODE = 1; return 0x69; }
-        	case 'I': { bool CCIR_MODE = 1; return 0x4D; }
-        	case 'J': { bool CCIR_MODE = 1; return 0x17; }
-        	case 'K': { bool CCIR_MODE = 1; return 0x1E; }
-        	case 'L': { bool CCIR_MODE = 1; return 0x65; }
-        	case 'M': { bool CCIR_MODE = 1; return 0x39; }
-        	case 'N': { bool CCIR_MODE = 1; return 0x59; }
-        	case 'O': { bool CCIR_MODE = 1; return 0x71; }
-        	case 'P': { bool CCIR_MODE = 1; return 0x2D; }
-        	case 'Q': { bool CCIR_MODE = 1; return 0x2E; }
-        	case 'R': { bool CCIR_MODE = 1; return 0x55; }
-        	case 'S': { bool CCIR_MODE = 1; return 0x4B; }
-        	case 'T': { bool CCIR_MODE = 1; return 0x74; }
-        	case 'U': { bool CCIR_MODE = 1; return 0x4E; }
-        	case 'V': { bool CCIR_MODE = 1; return 0x3C; }
-        	case 'W': { bool CCIR_MODE = 1; return 0x27; }
-        	case 'X': { bool CCIR_MODE = 1; return 0x3A; }
-        	case 'Y': { bool CCIR_MODE = 1; return 0x2B; }
-        	case 'Z': { bool CCIR_MODE = 1; return 0x63; }  // 90
+        	case 'A': { CCIR_MODE = 1; return 0x47; }  
+        	case 'B': { CCIR_MODE = 1; return 0x72; }
+        	case 'C': { CCIR_MODE = 1; return 0x1D; }
+        	case 'D': { CCIR_MODE = 1; return 0x53; }
+        	case 'E': { CCIR_MODE = 1; return 0x56; }
+        	case 'F': { CCIR_MODE = 1; return 0x1B; }
+        	case 'G': { CCIR_MODE = 1; return 0x35; }
+        	case 'H': { CCIR_MODE = 1; return 0x69; }
+        	case 'I': { CCIR_MODE = 1; return 0x4D; }
+        	case 'J': { CCIR_MODE = 1; return 0x17; }
+        	case 'K': { CCIR_MODE = 1; return 0x1E; }
+        	case 'L': { CCIR_MODE = 1; return 0x65; }
+        	case 'M': { CCIR_MODE = 1; return 0x39; }
+        	case 'N': { CCIR_MODE = 1; return 0x59; }
+        	case 'O': { CCIR_MODE = 1; return 0x71; }
+        	case 'P': { CCIR_MODE = 1; return 0x2D; }
+        	case 'Q': { CCIR_MODE = 1; return 0x2E; }
+        	case 'R': { CCIR_MODE = 1; return 0x55; }
+        	case 'S': { CCIR_MODE = 1; return 0x4B; }
+        	case 'T': { CCIR_MODE = 1; return 0x74; }
+        	case 'U': { CCIR_MODE = 1; return 0x4E; }
+        	case 'V': { CCIR_MODE = 1; return 0x3C; }
+        	case 'W': { CCIR_MODE = 1; return 0x27; }
+        	case 'X': { CCIR_MODE = 1; return 0x3A; }
+        	case 'Y': { CCIR_MODE = 1; return 0x2B; }
+        	case 'Z': { CCIR_MODE = 1; return 0x63; }  // 90
 
 		// No mode change needed for CR, LF and SP
         	case 13: { return 0x78; }   // CR
@@ -80,31 +80,31 @@ uint8_t CCIR476::Encode(char c)
         	case 32: { return 0x5C; }   // SP
 
         	// Figures Mode Cases
-        	case '0': { bool CCIR_MODE = 0; return 0x2D; }
-        	case '1': { bool CCIR_MODE = 0; return 0x2E; }
-        	case '2': { bool CCIR_MODE = 0; return 0x27; }
-        	case '3': { bool CCIR_MODE = 0; return 0x56; }
-        	case '4': { bool CCIR_MODE = 0; return 0x55; }
-        	case '5': { bool CCIR_MODE = 0; return 0x74; }
-        	case '6': { bool CCIR_MODE = 0; return 0x2B; }
-        	case '7': { bool CCIR_MODE = 0; return 0x4E; }
-        	case '8': { bool CCIR_MODE = 0; return 0x4D; }
-        	case '9': { bool CCIR_MODE = 0; return 0x71; }                 
-        	case '\'': { bool CCIR_MODE = 0; return 0x17; }      
-        	case '!': { bool CCIR_MODE = 0; return 0x1B; }
-        	case ':': { bool CCIR_MODE = 0; return 0x1D; }
-        	case '(': { bool CCIR_MODE = 0; return 0x1E; }
-        	case '&': { bool CCIR_MODE = 0; return 0x35; }
-        	case '.': { bool CCIR_MODE = 0; return 0x39; }
-        	case '/': { bool CCIR_MODE = 0; return 0x3A; }
-      		case '=': { bool CCIR_MODE = 0; return 0x3C; }
-        	case '-': { bool CCIR_MODE = 0; return 0x47; }
-        	case '$': { bool CCIR_MODE = 0; return 0x53; }
-        	case ',': { bool CCIR_MODE = 0; return 0x59; }
-        	case '+': { bool CCIR_MODE = 0; return 0x63; }
-        	case ')': { bool CCIR_MODE = 0; return 0x65; }
-        	case '#': { bool CCIR_MODE = 0; return 0x69; }
-        	case '?': { bool CCIR_MODE = 0; return 0x72; }
+        	case '0': { CCIR_MODE = 0; return 0x2D; }
+        	case '1': { CCIR_MODE = 0; return 0x2E; }
+        	case '2': { CCIR_MODE = 0; return 0x27; }
+        	case '3': { CCIR_MODE = 0; return 0x56; }
+        	case '4': { CCIR_MODE = 0; return 0x55; }
+        	case '5': { CCIR_MODE = 0; return 0x74; }
+        	case '6': { CCIR_MODE = 0; return 0x2B; }
+        	case '7': { CCIR_MODE = 0; return 0x4E; }
+        	case '8': { CCIR_MODE = 0; return 0x4D; }
+        	case '9': { CCIR_MODE = 0; return 0x71; }                 
+        	case '\'': { CCIR_MODE = 0; return 0x17; }      
+        	case '!': { CCIR_MODE = 0; return 0x1B; }
+        	case ':': { CCIR_MODE = 0; return 0x1D; }
+        	case '(': { CCIR_MODE = 0; return 0x1E; }
+        	case '&': { CCIR_MODE = 0; return 0x35; }
+        	case '.': { CCIR_MODE = 0; return 0x39; }
+        	case '/': { CCIR_MODE = 0; return 0x3A; }
+      		case '=': { CCIR_MODE = 0; return 0x3C; }
+        	case '-': { CCIR_MODE = 0; return 0x47; }
+        	case '$': { CCIR_MODE = 0; return 0x53; }
+        	case ',': { CCIR_MODE = 0; return 0x59; }
+        	case '+': { CCIR_MODE = 0; return 0x63; }
+        	case ')': { CCIR_MODE = 0; return 0x65; }
+        	case '#': { CCIR_MODE = 0; return 0x69; }
+        	case '?': { CCIR_MODE = 0; return 0x72; }
 
         default: { return 0x00; }
       }    
