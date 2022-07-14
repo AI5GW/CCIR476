@@ -89,6 +89,12 @@ Arduino Lint Status
 
 Changelog
 ---------
+* v1.2.0
+
+Corrected major error in the CCIR476.Encode() function: Previously, the automatic mode change did not work. 
+
+Included two new examples: NAVTEX_SIM_LOGIC_OUT.ino and NAVTEX_SIM_SI531.ino to show how to use the CCIR474 library to generate a 100 baud NAVTEX message on 518 kHz with prober synchronization, phasing and SITOR B forward error correction. NAVTEX_SIM_LOGIC_OUT.ino provides the space/mark signals as logic level output for use with a function generator. NAVTEX_SIM_SI531.ino utilizes a SI5351A to generate the rf signal without the use of a function generator. 
+
 * v1.1.0
 
 Added control symbols and the following new functions:
