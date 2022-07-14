@@ -29,11 +29,11 @@
 #include <avr/pgmspace.h>
 #endif
 
-#define CCIR_LETTERS                         	0x5A
-#define CCIR_FIGURES                         	0x36
-#define CCIR_ALPHA                            0x0F
-#define CCIR_BETA                             0x33
-#define CCIR_REP                              0x66
+#define CCIR_LETTERS                         0x5A
+#define CCIR_FIGURES                         0x36
+#define CCIR_ALPHA                           0x0F
+#define CCIR_BETA                            0x33
+#define CCIR_REP                             0x66
 
 
 class CCIR476
@@ -47,8 +47,8 @@ public:
   bool setMode(bool);
   bool isLetter(char);
   bool ModeChanged(void);
+  bool CCIR_MODE;
+  bool OLD_MODE;
 
 private:
-bool CCIR_MODE;
-bool OLD_MODE;
 };
