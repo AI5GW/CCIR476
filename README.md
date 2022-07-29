@@ -89,6 +89,10 @@ Arduino Lint Status
 
 Changelog
 ---------
+* v1.2.1
+
+Added CITATION.cff
+
 * v1.2.0
 
 Corrected major error in the CCIR476.Encode() function: Previously, the automatic mode change did not work. 
