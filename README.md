@@ -85,7 +85,7 @@ If you have any questions or comments, feel free to contact me through the email
 
 Arduino Lint Status
 -------------------
-[![arduino-lint Actions Status](https://github.com/AI5GW/CCIR476/workflows/arduino-lint/badge.svg)](https://github.com/AI5GW/CCIR476/actions)
+[![arduino-lint Actions Status](https://github.com/AI5GW/CCIR476/workflows/arduino-lint/badge.svg)](https://github.com/AI5GW/CCIR476/actions) [![DOI](https://zenodo.org/badge/512871186.svg)](https://zenodo.org/badge/latestdoi/512871186)
 
 Changelog
 ---------
